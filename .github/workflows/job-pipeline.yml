@@ -1,0 +1,52 @@
+name: Job Pipeline
+
+on:
+  schedule:
+    # GitHub Actions cron is always UTC and has no DST awareness, so we fire
+    # twice (covering both BST and GMT) and let the check-time job filter
+    # down to whichever one actually lands at 8am Europe/London.
+    - cron: '0 7 * * *'  # 08:00 BST (UTC+1) — late Mar to late Oct
+    - cron: '0 8 * * *'  # 08:00 GMT (UTC+0) — late Oct to late Mar
+  workflow_dispatch: {} # manual "Run workflow" button in the Actions tab
+
+jobs:
+  check-time:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+    steps:
+      - name: Check if it's 8am UK time (skip the non-matching cron trigger)
+        id: check
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          current_hour=$(TZ='Europe/London' date +%H)
+          if [ "$current_hour" = "08" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  run-pipeline:
+    needs: check-time
+    if: needs.check-time.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run job pipeline
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_SHEETS_WEBHOOK_URL: ${{ secrets.GOOGLE_SHEETS_WEBHOOK_URL }}
+        run: python main.py

@@ -1,0 +1,251 @@
+# ============================================================
+# Paul Ugoh — Job Scoring Criteria
+# Edit this file to update scoring without touching code.
+# ============================================================
+
+candidate:
+  name: Paul Ugoh
+  current_role: Project Executive, Ipsos UK
+  experience_years: 3
+  location: Brighton, UK
+  commutable_to: London (hybrid, max 3 days in office)
+  notice_period_months: 3
+  available_from: November 2026
+
+salary:
+  target_min: 60000
+  target_max: 70000
+  hard_skip_below: 50000
+  borderline_below: 60000  # 50–59k = borderline, flag for Paul's decision
+
+target_roles:
+  - Product Operations
+  - AI Delivery
+  - Programme Management
+  - Business Operations
+  - AI Programme Manager
+  - Delivery Manager (AI/tech context)
+  - Operations Lead (AI/automation mandate)
+
+target_companies:
+  - AI-native startups
+  - Tech-forward scaleups (Series A–C)
+  - SaaS product companies
+  - Fintech (non-banking specialism required)
+  - Healthtech
+
+avoid_company_types:
+  - IT outsourcers and MSPs (Version 1, Infosys, Wipro, Capita)
+  - Market research agencies
+  - Charities (unless AI mandate is genuinely central)
+  - Large corporates with no AI transformation mandate
+  - Staffing and recruitment agencies
+  - TV and film production
+  - Professional services (law, accountancy)
+
+# ============================================================
+# HARD SKIPS — reject immediately, no exceptions
+# ============================================================
+hard_skips:
+  contract_or_ftc: true          # FTC/contract roles = hard skip
+  salary_below_hard_floor: true  # Below £50k = hard skip
+  office_days_above: 4           # 5 days in office = hard skip
+  locations_excluded:
+    - Manchester
+    - Glasgow
+    - Edinburgh
+    - Bristol (unless remote-first)
+  role_types_excluded:
+    - Customer support executive
+    - Call centre operations
+    - Market research analyst
+    - Charity fundraising
+    - TV/film production
+    - HR transformation (without tech mandate)
+    - Junior coordinator (reports to a PM)
+  clearance_required:
+    - DV (Developed Vetting)
+    - SC (Security Cleared)
+  domain_excluded:
+    - Private equity / private markets
+    - Legal services
+    - Investment banking
+    - Hedge funds
+
+# ============================================================
+# SCORING DIMENSIONS (total = 100 points)
+# ============================================================
+scoring_dimensions:
+
+  role_type_match:
+    weight: 25
+    notes: >
+      How closely does the role match target functions?
+      Full marks for product ops, AI delivery, programme management, business ops.
+      Heavy penalty for: pure customer ops, IT infrastructure, market research,
+      charity fundraising, SaaS sales, HR transformation without tech mandate.
+
+  ai_automation_relevance:
+    weight: 20
+    notes: >
+      Is AI tooling, automation, or process improvement genuinely central to the role?
+      Full marks if AI/automation is a primary mandate, not a bullet point.
+      Paul's Python, n8n, and Claude experience must be directly relevant.
+      Penalise if AI is mentioned once in a list of 20 requirements.
+
+  seniority_and_scope:
+    weight: 20
+    notes: >
+      Is seniority appropriate for 3 years experience?
+      Penalise for: Director-level (too senior), entry/coordinator (too junior),
+      roles reporting to a PM (step backward), roles requiring 7+ years.
+      Sweet spot: mid-senior individual contributor, reporting to Head/Director/COO.
+
+  salary_and_location:
+    weight: 15
+    notes: >
+      Does disclosed salary meet £60–70k target?
+      If undisclosed, assess other dimensions and flag.
+      London hybrid (max 3 days office) = full marks.
+      Outside London without remote = heavy penalty.
+      Brighton commute considered — early starts (pre-7:30am) are a practical constraint.
+
+  company_type_and_trajectory:
+    weight: 10
+    notes: >
+      Is this a tech-forward, AI-native, or scaling company?
+      Penalise for: IT outsourcers, charities, agencies, large corporates with slow pace,
+      companies with negative headcount growth AND Glassdoor below 3.5.
+      Bonus for: AI product companies, Series A–C with strong mission,
+      companies where Paul would be embedded in a product team.
+
+  structural_blockers:
+    weight: 10
+    notes: >
+      Are there hard gaps Paul cannot bridge?
+      Known gaps: SQL (material for analytics roles), formal PM experience,
+      IT infrastructure/cloud delivery, financial services domain specialism,
+      DV/SC clearance, people management of large teams (4+),
+      Agile certification (PSM/CSM/SAFe), SaaS implementation PM experience.
+
+# ============================================================
+# SCORING THRESHOLDS
+# ============================================================
+thresholds:
+  apply: 70          # 70+ = proceed with full workflow
+  borderline: 60     # 60–69 = flag for Paul's decision with pros/cons
+  skip: 0            # Below 60 = skip, explain clearly
+
+# ============================================================
+# PAUL'S PROOF POINTS
+# Reference these when assessing fit — each belongs to one CV role.
+# ============================================================
+proof_points:
+  - id: python_ae_script
+    description: >
+      Built an automated adverse event detection script in Python that replaced
+      a daily manual pharmacovigilance review process across HCC and BTC oncology
+      trackers, cutting detection time from hours to seconds. Built without being asked.
+    relevant_for:
+      - AI delivery roles
+      - Automation-heavy ops roles
+      - Healthtech roles
+      - Any role where "ships things" is the bar
+
+  - id: job_search_automation
+    description: >
+      Built a job search pipeline combining Claude, Apify, Vibe Prospecting and
+      a Google Apps Script endpoint, reducing manual application work to a single
+      click per role.
+    relevant_for:
+      - AI-native companies
+      - Product ops roles
+      - Business operations roles
+
+  - id: completion_rate_66
+    description: >
+      Diagnosed operational drop-off patterns through data analysis, redesigned
+      the process flow and improved completion rates by 66% against the original baseline.
+    relevant_for:
+      - Process improvement roles
+      - Operations roles
+      - Any role requiring data-driven decision making
+
+  - id: five_market_acceleration
+    description: >
+      Rebuilt a stalled cross-functional programme across five international markets
+      by restructuring ownership, surfacing dependencies and accelerating delivery by 50%.
+    relevant_for:
+      - Multi-market rollout roles
+      - Programme management roles
+      - Cross-functional delivery roles
+
+  - id: retention_200k
+    description: >
+      Retained a £200k programme at risk by diagnosing operational failures,
+      re-establishing governance and rebuilding stakeholder trust.
+    relevant_for:
+      - Governance-heavy roles
+      - Client-facing delivery roles
+      - Stakeholder management roles
+
+  - id: supplier_negotiation_30
+    description: >
+      Negotiated a 30% reduction in supplier costs by building a structured
+      business case and challenging vendor pricing with tighter specifications.
+    relevant_for:
+      - Ops roles with supplier management
+      - Commercial awareness signals
+
+# ============================================================
+# PAUL'S KNOWN GAPS — be honest, do not paper over these
+# ============================================================
+known_gaps:
+  - SQL skills (material gap for analytics-heavy or data PM roles)
+  - Formal product management experience (cannot claim PM practitioner)
+  - IT infrastructure / cloud / MSP delivery experience
+  - Financial services domain knowledge (KYB, KYC, payments, banking)
+  - Direct people management (line managing 4+ direct reports)
+  - Agile certification (PSM, CSM, SAFe)
+  - SaaS implementation PM experience specifically
+  - Experience inside a product-led tech company (Ipsos is a research agency)
+  - Private markets, legal, or professional services domain knowledge
+
+# ============================================================
+# TRAJECTORY CHECK
+# ============================================================
+trajectory:
+  target: >
+    Roles that put Paul inside a product-led tech company are prioritised.
+    The longer-term goal is to move toward product design.
+    Roles that lead toward IT services delivery, charity ops, or corporate
+    programme management tracks should be flagged as trajectory risks,
+    even if the fit score is technically above threshold.
+  positive_signals:
+    - Working inside an AI product company
+    - Building product ops credentials
+    - Close proximity to product and engineering teams
+    - Roles at companies like Metaview, Wise, Kraken (even if not ready yet)
+  negative_signals:
+    - IT outsourcing delivery track
+    - Charity operations (exit paths toward third sector)
+    - Large corporate programme management (exit paths toward more of the same)
+    - Domain-specific delivery (food logistics, energy, legal) with no AI angle
+
+# ============================================================
+# OUTPUT FORMAT — return assessments in this structure
+# ============================================================
+output_format: |
+  **Role:** [Job title] at [Company]
+  **Fit score:** [X/10]
+  **Threshold:** [Apply / Borderline / Skip]
+
+  **Why it works:**
+  - [3–5 bullet points on genuine strengths]
+
+  **Hard gaps:**
+  - [2–4 bullet points on structural gaps or blockers]
+
+  **Trajectory check:** [One sentence — does this move Paul toward or away from product ops/AI delivery at a tech company, and eventually product design?]
+
+  **Recommendation:** [One clear sentence — apply, borderline (Paul's call), or skip — with the single most important reason]

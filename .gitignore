@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+results.json
+run_output*.log
+_encoding_check.json
